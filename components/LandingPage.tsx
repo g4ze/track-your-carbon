@@ -13,8 +13,9 @@ export default function LandingPage() {
                                 Lesser Emissions.
                             </span> 
                         </h1>
-                        <p className="text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+                        <p className="text-lg font-normal text-gray-500 lg:text-xl ">
                             Here at Flowbite we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.
+                            ;kjn; poij pk po pok lk jl lk,m ,m,m,m
                         </p>
                     </div>
                 </div>

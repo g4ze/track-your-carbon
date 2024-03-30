@@ -1,6 +1,8 @@
 import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from "next-auth/providers/google";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
 export const NEXT_AUTH_CONFIG = {
     providers: [
@@ -11,23 +13,24 @@ export const NEXT_AUTH_CONFIG = {
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID ?? "",
             clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? ""
-        }),
-        CredentialsProvider({
-          name: 'Credentials',
-          credentials: {
-            username: { label: 'email', type: 'text', placeholder: '' },
-            password: { label: 'password', type: 'password', placeholder: '' },
-          },
-            async authorize(credentials: any) {
+        },
+        ),
+        // CredentialsProvider({
+        //   name: 'Credentials',
+        //   credentials: {
+        //     username: { label: 'email', type: 'text', placeholder: '' },
+        //     password: { label: 'password', type: 'password', placeholder: '' },
+        //   },
+        //     async authorize(credentials: any) {
             
-            return {
-                  id: "user1",
-                  name: "asd",
-                  userId: "asd",
-                  email: "ramdomEmail"
-              };
-          },
-        }),
+        //     return {
+        //           id: "user1",
+        //           name: "asd",
+        //           userId: "asd",
+        //           email: "ramdomEmail"
+        //       };
+        //   },
+        // }),
     ],
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
@@ -42,6 +45,27 @@ export const NEXT_AUTH_CONFIG = {
               session.user.id = token.uid
           }
           return session
-      }
-    }
+      },
+      signIn: async ({user, account, profile}:any)=> {
+        // Check if the user is signing up for the first time
+        const existingUser = await prisma.user.findUnique({
+            where: { email: user.email },
+        });
+        console.log(existingUser);
+        if (!existingUser) {
+            await prisma.user.create({
+                data: {
+                    email: user.email,
+                    password: "", // Add the password property
+                    name: user.name, // Add the name property
+                },
+            });
+        }
+        return user
+    },
+
+    },
+    pages: {
+        signIn: '/signin',
+    },
   }

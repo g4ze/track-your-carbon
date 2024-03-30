@@ -2,6 +2,7 @@
 import { useSession } from "next-auth/react";
 import Loading from "./Loading";
 import LandingPage from "./LandingPage";
+import UserView from "./UserView";
 
 export default () => {
     const session:any = useSession();
@@ -13,6 +14,16 @@ export default () => {
          </div>
         }{session.status == "unauthenticated" &&
             <LandingPage/>
+        }
+        {
+            session.status == "authenticated" &&
+            <><section id="top">
+            <UserView session={session}/>
+            </section>
+            <section id="landing">
+            <LandingPage/>
+            </section>
+            </>
         }
         </div>
     );
