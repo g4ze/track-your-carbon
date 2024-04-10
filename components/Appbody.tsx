@@ -1,6 +1,8 @@
 "use client"
 import { useSession } from "next-auth/react";
 import Loading from "./Loading";
+import BottomBanner from "./BottomBanner";
+
 import LandingPage from "./LandingPage";
 import UserView from "./UserView";
 
@@ -22,6 +24,7 @@ export default () => {
             </section>
             <section id="landing">
             <LandingPage/>
+            <BottomBanner />
             </section>
             </>
         }

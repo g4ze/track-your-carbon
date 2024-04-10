@@ -1,4 +1,3 @@
-import BottomBanner from "./BottomBanner";
 import Features from "./Features";
 
 export default function LandingPage() {
@@ -21,7 +20,7 @@ export default function LandingPage() {
                 </div>
             </div>
             <div className="hidden md:block"><Features /></div>
-            <BottomBanner />
+            
         </>
     );
 }
