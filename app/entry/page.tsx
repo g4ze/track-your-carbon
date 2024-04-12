@@ -1,19 +1,22 @@
-"use client"
+"use client";
 import React, { useState } from 'react';
 
 const CarbonFootprintForm = () => {
   const [formData, setFormData] = useState({
-    transportation: '',
+    transportationMode: '',
+    transportationDistance: '',
     electricity: '',
     waste: '',
     water: '',
     food: '',
   });
 
-  const [backgroundColor, setBackgroundColor] = useState({ r: 241,
-    g: 245,
-    b: 249,
-    transition: '0.5s ease-in-out',});
+  const [backgroundColor, setBackgroundColor] = useState({
+    r: 255,
+    g: 255,
+    b: 255,
+    transition: '0.5s ease-in-out',
+  });
 
   const handleInputChange = (e:any) => {
     const { id, value } = e.target;
@@ -24,53 +27,75 @@ const CarbonFootprintForm = () => {
 
     // Calculate the total of the form fields
     const total =
-      Number(formData.transportation) +
-      Number(formData.electricity) +
-      Number(formData.waste) +
-      Number(formData.water) +
-      Number(formData.food);
+      (formData.transportationMode ? Number(formData.transportationDistance) : 0) +
+      Number(formData.electricity.split(' ')[0]) +
+      Number(formData.waste.split(' ')[0]) +
+      Number(formData.water.split(' ')[0]) +
+      Number(formData.food.split(' ')[0]);
 
-    // Update the background color based on the total
+    // Calculate the darkness of the background color
     const darkness = Math.floor((total / 250) * 255);
     setBackgroundColor({
-      r: 255-darkness,
-      g: 255-darkness,
-      b: 255-darkness,
+      r: 255 - darkness,
+      g: 255 - darkness,
+      b: 255 - darkness,
       transition: '0.5s ease-in-out',
     });
   };
 
   return (
     <div
-      className={`flex justify-center items-center h-screen `}
+      className="flex justify-center items-center h-screen"
       style={{
         backgroundColor: `rgb(${backgroundColor.r}, ${backgroundColor.g}, ${backgroundColor.b})`,
         transition: backgroundColor.transition,
       }}
     >
       <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md animate-fade-in">
-        <div className="mb-4 animate-slide-up">
+        <div className="mb-4 animate-slide-up flex items-center">
           <label
-            className="block text-gray-700 font-bold mb-2"
-            htmlFor="transportation"
+            className="block text-gray-700 font-bold mr-2"
+            htmlFor="transportationMode"
           >
-            Transportation
+            Transportation Mode:
           </label>
-          <input
+          <select
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            id="transportation"
-            type="text"
-            placeholder="Enter your transportation habits"
-            value={formData.transportation}
+            id="transportationMode"
+            value={formData.transportationMode}
             onChange={handleInputChange}
-          />
+          >
+            <option value="">Select transportation mode</option>
+            <option value="car">Car</option>
+            <option value="bike">Bike</option>
+            <option value="public_transit">Public Transit</option>
+            <option value="other">Other</option>
+          </select>
         </div>
-        <div className="mb-4 animate-slide-up">
+        {formData.transportationMode && (
+          <div className="mb-4 animate-slide-up flex items-center">
+            <label
+              className="block text-gray-700 font-bold mr-2"
+              htmlFor="transportationDistance"
+            >
+              Distance Traveled (km):
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="transportationDistance"
+              type="text"
+              placeholder="Enter distance traveled"
+              value={formData.transportationDistance}
+              onChange={handleInputChange}
+            />
+          </div>
+        )}
+        <div className="mb-4 animate-slide-up flex items-center">
           <label
-            className="block text-gray-700 font-bold mb-2"
+            className="block text-gray-700 font-bold mr-2"
             htmlFor="electricity"
           >
-            Electricity
+            Electricity:
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -80,10 +105,14 @@ const CarbonFootprintForm = () => {
             value={formData.electricity}
             onChange={handleInputChange}
           />
+          <span className="ml-2">kWh</span>
         </div>
-        <div className="mb-4 animate-slide-up">
-          <label className="block text-gray-700 font-bold mb-2" htmlFor="waste">
-            Waste
+        <div className="mb-4 animate-slide-up flex items-center">
+          <label
+            className="block text-gray-700 font-bold mr-2"
+            htmlFor="waste"
+          >
+            Waste:
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -93,10 +122,14 @@ const CarbonFootprintForm = () => {
             value={formData.waste}
             onChange={handleInputChange}
           />
+          <span className="ml-2">kg</span>
         </div>
-        <div className="mb-4 animate-slide-up">
-          <label className="block text-gray-700 font-bold mb-2" htmlFor="water">
-            Water
+        <div className="mb-4 animate-slide-up flex items-center">
+          <label
+            className="block text-gray-700 font-bold mr-2"
+            htmlFor="water"
+          >
+            Water:
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -106,10 +139,14 @@ const CarbonFootprintForm = () => {
             value={formData.water}
             onChange={handleInputChange}
           />
+          <span className="ml-2">L</span>
         </div>
-        <div className="mb-4 animate-slide-up">
-          <label className="block text-gray-700 font-bold mb-2" htmlFor="food">
-            Food
+        <div className="mb-4 animate-slide-up flex items-center">
+          <label
+            className="block text-gray-700 font-bold mr-2"
+            htmlFor="food"
+          >
+            Food:
           </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -119,6 +156,7 @@ const CarbonFootprintForm = () => {
             value={formData.food}
             onChange={handleInputChange}
           />
+          <span className="ml-2">kg</span>
         </div>
         <div className="flex items-center justify-between animate-fade-in">
           <button
