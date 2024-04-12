@@ -51,8 +51,8 @@ export const NEXT_AUTH_CONFIG = {
         const existingUser = await prisma.user.findUnique({
             where: { email: user.email },
         });
-        console.log(existingUser);
         if (!existingUser) {
+            console.log("Creating new user: "+user.name)
             await prisma.user.create({
                 data: {
                     email: user.email,
@@ -60,6 +60,8 @@ export const NEXT_AUTH_CONFIG = {
                     name: user.name, // Add the name property
                 },
             });
+        } else{
+            console.log("User already exists: "+user.name)
         }
         return user
     },
