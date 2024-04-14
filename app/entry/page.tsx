@@ -1,4 +1,5 @@
 "use client";
+import { automateCarbonCalculation } from '@/lib/calc';
 import React, { useState } from 'react';
 
 const CarbonFootprintForm = () => {
