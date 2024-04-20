@@ -5,6 +5,7 @@ import BottomBanner from "./BottomBanner";
 
 import LandingPage from "./LandingPage";
 import UserView from "./UserView";
+import CarbonEmbed from "./CarbonEmbed";
 
 export default () => {
     const session:any = useSession();
@@ -20,6 +21,7 @@ export default () => {
         {
             session.status == "authenticated" &&
             <><section id="top">
+                <CarbonEmbed/>
             <UserView session={session}/>
             </section>
             <section id="landing">

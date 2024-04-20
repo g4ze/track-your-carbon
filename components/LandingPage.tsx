@@ -1,3 +1,4 @@
+import CarbonEmbed from "./CarbonEmbed";
 import Features from "./Features";
 
 export default function LandingPage() {
