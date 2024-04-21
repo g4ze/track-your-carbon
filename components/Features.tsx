@@ -10,9 +10,7 @@ export default function (){
         </h2>
 
         <p className="mb-12 text-gray-500">
-          Nunc tincidunt vulputate elit. Mauris varius purus malesuada neque
-          iaculis malesuada. Aenean gravida magna orci, non efficitur est
-          porta id. Donec magna diam.
+          Monitor and keep track of everything!
         </p>
       </div>
 
@@ -30,8 +28,7 @@ export default function (){
               <div className="ml-2 grow">
                 <p className="mb-3 font-bold">Support 24/7</p>
                 <p className="text-gray-500">
-                  Pellentesque mollis, metus nec fringilla aliquam. Donec
-                  consequat orci quis volutpat imperdiet.
+                  Our team is quick and ready to resolve any issues you might face!
                 </p>
               </div>
             </div>
@@ -49,8 +46,7 @@ export default function (){
               <div className="ml-2 grow">
                 <p className="mb-3 font-bold">Tracking</p>
                 <p className="text-gray-500">
-                  Magna lacus iaculis elit, quis pharetra varius. Aenean
-                  lectus ex, placerat id tellus in eros.
+                 Our product provides the users with a way to track their carbon footprint.
                 </p>
               </div>
             </div>
@@ -66,10 +62,9 @@ export default function (){
                 </svg>
               </div>
               <div className="ml-2 grow">
-                <p className="mb-3 font-bold">Reporting</p>
+                <p className="mb-3 font-bold">Live Data</p>
                 <p className="text-gray-500">
-                  Pellentesque varius ex vel consequat quis. Sed mauris ex,
-                  imperdiet sit amet nisl ac, ultrices.
+                  We provide live and up-to-date data to the users.
                 </p>
               </div>
             </div>
@@ -87,8 +82,7 @@ export default function (){
               <div className="ml-2 grow">
                 <p className="mb-3 font-bold">Analytics</p>
                 <p className="text-gray-500">
-                  Vestibulum gravida iaculis nisl, vel lobortis eros.
-                  Praesent vulputate lacus bibendum augue.
+                 We provide the users with a lot of DATA. This can be seen once logged in, by going to the nums/graphs page.
                 </p>
               </div>
             </div>
@@ -104,10 +98,9 @@ export default function (){
                 </svg>
               </div>
               <div className="ml-2 grow">
-                <p className="mb-3 font-bold">Huge community</p>
+                <p className="mb-3 font-bold">Minimalistic</p>
                 <p className="text-gray-500">
-                  Praesent vulputate lacus bibendum augue. Pellentesque
-                  mollis, metus nec fringilla aliquam.
+                 The minimal UI/UX of our product keep the users engaged and focused on the task at hand.
                 </p>
               </div>
             </div>
@@ -125,8 +118,7 @@ export default function (){
               <div className="ml-2 grow">
                 <p className="mb-3 font-bold">Easy to use</p>
                 <p className="text-gray-500">
-                  Sed mauris ex, imperdiet sit amet nisl ac, ultrices. Magna
-                  lacus iaculis elit, quis pharetra varius.
+                Even a kid can use and understand this app :p
                 </p>
               </div>
             </div>

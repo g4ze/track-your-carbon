@@ -7,7 +7,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
-export default function() {
+export default function CarbonFootprintCalculator() {
   const [formData, setFormData] = useState({
     transportationMode: 'Car',
     transportationDistance: '',
@@ -18,33 +18,77 @@ export default function() {
     hoursoftravel: '',
     naturalGasUsage: '',
     recycling: '',
+    agriculture: '',
+    housing: '',
+    shopping: '',
+    other: '',
+    transportationMode2: 'Car',
+    transportationDistance2: '',
+    electricity2: '',
+    waste2: '',
+    water2: '',
+    food2: '',
+    hoursoftravel2: '',
+    naturalGasUsage2: '',
+    recycling2: '',
+    agriculture2: '',
+    housing2: '',
+    shopping2: '',
+    other2: '',
+    transportationMode3: 'Car',
+    transportationDistance3: '',
+    electricity3: '',
+    waste3: '',
+    water3: '',
+    food3: '',
+    hoursoftravel3: '',
+    naturalGasUsage3: '',
+    recycling3: '',
+    agriculture3: '',
+    housing3: '',
+    shopping3: '',
+    other3: '',
+    transportationMode4: 'Car',
+    transportationDistance4: '',
+    electricity4: '',
+    waste4: '',
+    water4: '',
+    food4: '',
+    hoursoftravel4: '',
+    naturalGasUsage4: '',
+    recycling4: '',
+    agriculture4: '',
+    housing4: '',
+    shopping4: '',
+    other4: '',
   });
-
-  const session: any = useSession();
+  const [carbonFootprint, setCarbonFootprint] = useState('');
+ function handleClick() {
+    setCarbonFootprint('23CO2eq/kg')
+  }
+  const session = useSession();
   const router = useRouter();
 
-  if (session.status == "unauthenticated") {
+  if (session.status === "unauthenticated") {
     router.push("/");
   }
 
   return (
     <>
-      {session.status == "loading" && (
+      {session.status === "loading" && (
         <div className="flex items-center justify-center h-screen">
           <Loading />
         </div>
       )}
-      {session.status == "authenticated" && (
+      {session.status === "authenticated" && (
         <div className="flex justify-center items-center">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-800">
-              Carbon Footprint Calculator
-            </h1>
+            
             <p className="text-gray-600 mt-2">
               Calculate your carbon footprint based on your daily activities.
             </p>
             <div className="flex justify-center items-center mt-8">
-              <div className="w-1/2 bg-pink-500 p-4 rounded-lg shadow-lg ">
+              <div className="w-1/2 p-4 rounded-lg shadow-lg ">
                 <Formfield
                   labelName="kcal Food"
                   placeholder="2000"
@@ -73,19 +117,6 @@ export default function() {
                   formData={formData}
                   setFormData={setFormData}
                 />
-              </div>
-              <div className="w-1/2 bg-yellow-500 p-4 rounded-lg shadow-lg animate-slide-in-right">
-                <Formfield
-                  labelName="Transportation Mode"
-                  placeholder="car"
-                  id="transportationMode"
-                  formData={formData}
-                  setFormData={setFormData}
-                  options={[
-                    { value: 'car', label: 'Car', id: 1 },
-                    { value: 'bike', label: 'Bike', id: 2 },
-                  ]}
-                />
                 <Formfield
                   labelName="Hours of travel"
                   placeholder="2"
@@ -107,15 +138,161 @@ export default function() {
                   formData={formData}
                   setFormData={setFormData}
                 />
+                <Formfield
+                  labelName="Agriculture(kg)"
+                  placeholder="5"
+                  id="agriculture"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Housing (sqft)"
+                  placeholder="1000"
+                  id="housing"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Shopping (USD)"
+                  placeholder="50"
+                  id="shopping"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Other (kg)"
+                  placeholder="5"
+                  id="other"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Water(L)"
+                  placeholder="2000"
+                  id="water"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Water(L)"
+                  placeholder="2000"
+                  id="water"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+              </div>
+              
+              <div className="w-1/2 p-4 rounded-lg shadow-lg animate-slide-in-right">
+                <Formfield
+                  labelName="Transportation Mode 2"
+                  placeholder="car"
+                  id="transportationMode2"
+                  formData={formData}
+                  setFormData={setFormData}
+                  options={[
+                    { value: 'car', label: 'Car', id: 1 },
+                    { value: 'bike', label: 'Bike', id: 2 },
+                  ]}
+                />
+                <Formfield
+                  labelName="Transportation Distance 2"
+                  placeholder="10"
+                  id="transportationDistance2"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Electricity 2"
+                  placeholder="100"
+                  id="electricity2"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Waste 2"
+                  placeholder="10"
+                  id="waste2"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Water 2"
+                  placeholder="200"
+                  id="water2"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Food 2"
+                  placeholder="2000"
+                  id="food2"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Hours of travel 2"
+                  placeholder="2"
+                  id="hoursoftravel2"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Natural Gas Usage 2"
+                  placeholder="50"
+                  id="naturalGasUsage2"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Recycling 2"
+                  placeholder="5"
+                  id="recycling2"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Agriculture 2"
+                  placeholder="5"
+                  id="agriculture2"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Housing 2"
+                  placeholder="1000"
+                  id="housing2"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Shopping 2"
+                  placeholder="50"
+                  id="shopping2"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
+                <Formfield
+                  labelName="Other 2"
+                  placeholder="5"
+                  id="other2"
+                  formData={formData}
+                  setFormData={setFormData}
+                />
               </div>
             </div>
+            <button
+              className="mt-8 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={handleClick}
+            >
+              total: {carbonFootprint}
+            </button>
           </div>
-          <pre>{JSON.stringify(formData, null, 2)}</pre>
         </div>
       )}
     </>
   );
 }
+
 
 // export default function()  {
 //   const [formData, setFormData] = useState({

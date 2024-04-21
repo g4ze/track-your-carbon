@@ -36,8 +36,21 @@ export default(session:any):React.ReactNode=>{
                         router.push("/entry");
                     }} classN="rounded-none bg-green-500 w-40 h-10 text-white font-bold "/>
                     <img src={Feet.src} className="h-40" alt="leaf-logo" />
-                    
+                    <div>
+                    <Button label="Nums" func={():void=>{
+                        
+                        console.log("nums");
+                        router.push("/live");
+                    }} classN="rounded-none bg-yellow-500 w-20 h-10 text-white font-bold shadow-lg"/>
+                    <Button label="Graphs" func={():void=>{
+                        
+                        console.log("graphs");
+                        router.push("/graphs");
+                    }} classN="rounded-none bg-red-500 w-20 h-10 text-white font-bold shadow-lg"
+                    />
+                    </div>
                 </div>
+
                 
             </div>
         </div>

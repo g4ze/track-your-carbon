@@ -16,17 +16,18 @@ export default () => {
          <Loading/>
          </div>
         }{session.status == "unauthenticated" &&
-            <LandingPage/>
+        <><LandingPage/>
+            <BottomBanner />
+            </>
         }
         {
             session.status == "authenticated" &&
             <><section id="top">
-                <CarbonEmbed/>
             <UserView session={session}/>
             </section>
             <section id="landing">
             <LandingPage/>
-            <BottomBanner />
+            
             </section>
             </>
         }
