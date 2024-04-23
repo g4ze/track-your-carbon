@@ -1,12 +1,9 @@
 import { useEffect } from "react";
 import CarbonEmbed from "./CarbonEmbed";
 import Features from "./Features";
-import AOS from "aos";
 import "aos/dist/aos.css";
 export default function LandingPage() {
-    useEffect(() => {
-        AOS.init();
-      }, []);
+  
     return (
         <>
             <div className="my-3 mx-auto md:px-2 p-8 rounded-lg animate-fade-in" style={{ animationDuration: '2s' }}>
@@ -17,7 +14,7 @@ export default function LandingPage() {
                     </span>
                 </h1>
                 <p className="text-lg font-normal text-gray-500 lg:text-xl ">
-                    The Earth, our shared home, faces a pressing challenge: climate change. It's a daunting issue, but here's the good news: we all have the power to make a difference. Every action, big or small, contributes to the collective impact on our environment.
+                    The Earth, our shared home, faces a pressing challenge: climate change. It&apos;s a daunting issue, but here&apos;s the good news: we all have the power to make a difference. Every action, big or small, contributes to the collective impact on our environment.
                 </p>
             </div>
             <div className="mt-4 flex justify-center items-center  rounded-lg animate-fade-in" style={{ animationDuration: '10s' }}>
