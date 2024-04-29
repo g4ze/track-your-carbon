@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 import LandingPage from "./LandingPage";
 import { JsonArray, JsonObject } from "@prisma/client/runtime/library";
 
-export default function({labelName, placeholder, id, formData, setFormData, options}:{formData:any,setFormData:any,labelName:string, placeholder:string, id:string, options?:{ id: Number, value: string, label: string }[]}){
+export default function({labelName, placeholder, id, formData, setFormData='', options}:{formData:any,setFormData?:any,labelName:string, placeholder:string, id:string, options?:{ id: Number, value: string, label: string }[]}){
 
     return(
         <>
@@ -16,7 +16,7 @@ export default function({labelName, placeholder, id, formData, setFormData, opti
                 style={{ border: 'none' }}
                 id="activity1"
                 onChange={(e) => {
-                    setFormData({...formData, [id]: e.target.value});
+                    (setFormData)?setFormData({...formData, [id]: e.target.value}):console.log('');
                 }}
             >
                 {(options as { id: Number, value: string, label: string }[]).map((option) => (
@@ -37,7 +37,7 @@ export default function({labelName, placeholder, id, formData, setFormData, opti
                 type="text"
                 placeholder={placeholder}
                 onChange={(e) => {
-                    setFormData({...formData, [id]: e.target.value});
+                    (setFormData)?setFormData({...formData, [id]: e.target.value}):console.log('');
                 }}
             />
         </div>

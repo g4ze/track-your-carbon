@@ -8,8 +8,22 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
+  id       Int      @id @default(autoincrement())
   password String?
-  email    String @unique @db.VarChar(255)
-  name     String @db.VarChar(255)
+  email    String   @unique @db.VarChar(255)
+  name     String   @db.VarChar(255)
+  emission Decimal? @default(4.5) @db.Decimal(4, 1)
+
+  Userdata Userdata[]
+}
+
+model Userdata {
+  user       User     @relation(fields: [email], references: [email])
+  email      String   @id
+  gender     String
+  age        String
+  ethnicity  String
+  profession String
+  weight     Decimal
+  vehicles   String[]
 }

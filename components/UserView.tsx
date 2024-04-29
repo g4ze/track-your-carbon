@@ -4,10 +4,24 @@ import { PrismaClient } from "@prisma/client";
 import Feet from "../public/feet.png";
 import Button from "./Button";
 import { useRouter } from "next/navigation";
-const client = new PrismaClient();
-export default(session:any):React.ReactNode=>{
-    const router = useRouter();
+import React, { useEffect, useState } from "react";
 
+export default (session:any): React.ReactNode => {
+    const email = session.session.data.user.email;
+    const [userData, setUserData] = useState({emission: null});
+  const router = useRouter();
+
+  useEffect(() => {
+    async function fetchUserData() {
+      const res = await fetch(`/api/getuserdetail?email=${email}`);
+      const data = await res.json();
+    
+      setUserData(data);
+    }
+    fetchUserData();
+  }, [email]);
+
+    
     const first_name=session.session.data.user.name.split(" ")[0];
     return (
         <div className="flex justify-center items-center h-screen">
@@ -16,15 +30,14 @@ export default(session:any):React.ReactNode=>{
                     <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-black md:text-5xl lg:text-6xl">
                         HI! {first_name},<br></br>
                         <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 ">
-                            20299
+                            {userData?.emission as string}
                         </span> 
-                        
                     </h1>
                     <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 text-2xl">
-                            CO2eq/kg</span>
+                            Tons CO2eq</span>
                     
                     <p className="text-lg font-normal text-gray-500 lg:text-xl ">
-                        Till date footprint
+                        this year
                     </p>
                     
                 </div>
@@ -38,8 +51,6 @@ export default(session:any):React.ReactNode=>{
                     <img src={Feet.src} className="h-40" alt="leaf-logo" />
                     <div>
                     <Button label="Nums" func={():void=>{
-                        
-                        console.log("nums");
                         router.push("/live");
                     }} classN="rounded-none bg-yellow-500 w-20 h-10 text-white font-bold shadow-lg"/>
                     <Button label="Graphs" func={():void=>{
@@ -57,20 +68,3 @@ export default(session:any):React.ReactNode=>{
     );
 }
 
-
-async function getUserDetails({email}:{email:string}) {
-  try {
-    const user = await client.user.findFirst({
-        where:{
-            email: email,
-        }
-    });
-    console.log(user);
-    return {
-    // name: user?.name,
-    email: user?.email
-    }
-  }  catch(e) {
-    console.log(e);
-  }
-}
