@@ -1,3 +1,8 @@
+# Track your carbon
+## Tech used:
+Tech used - Next, PostgreSQL, Prisma ORM, Tailwindcss, React, next-auth, Typescript
+
+
 ## Setup
 npm i
 apply all credentials for auth
