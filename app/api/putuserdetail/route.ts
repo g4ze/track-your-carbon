@@ -62,6 +62,7 @@ function calculateCO2eEmission(formData:any) {
     const weightFactor = emissionFactors.weightFactor * weight;
     const professionFactor = emissionFactors.professionFactor[profession.toLowerCase()] || 1.0;
     const ethnicityFactor = emissionFactors.ethnicityFactor[ethnicity.toLowerCase()] || 1.0;
+    // @ts-ignore
     const vehicleEmission = vehicle.reduce((total, vehicleType) => {
       const vehicleFactor = emissionFactors.vehicleFactor[vehicleType.toLowerCase()] || 0;
       return total + vehicleFactor;
