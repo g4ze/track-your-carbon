@@ -30,7 +30,7 @@ export default (session:any): React.ReactNode => {
                     <h1 className="mb-4 text-3xl font-extrabold text-gray-900 dark:text-black md:text-5xl lg:text-6xl">
                         HI! {first_name},<br></br>
                         <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 ">
-                            {userData?.emission as string}
+                            {userData?.emission ? userData.emission : ''}
                         </span> 
                     </h1>
                     <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400 text-2xl">
