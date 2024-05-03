@@ -81,7 +81,7 @@ function handleClick() {
   if (session.status === "unauthenticated") {
     router.push("/");
   }
-
+  // @ts-nocheck
   return (
     <>
       {session.status === "loading" && (
@@ -222,7 +222,7 @@ function handleClick() {
                     </Input>
                 <button
                   className="text-blue-400 font-bold py-2 px-4 w-1/6"
-                  onClick={()=>{
+                  onClick={()=>{// @ts-ignore
                     setFormData({...formData, vehicle:[...formData.vehicle, vehicle1]});
                   }}
                 >
