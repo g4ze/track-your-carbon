@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import emissionFactors from "./emissionFactors.json";
 
 const prisma = new PrismaClient();
 
@@ -47,7 +46,16 @@ export async function PUT(req: Request) {
 function calculateCO2eEmission(formData:any) {
     const { gender, age, ethnicity, profession, weight, vehicle } = formData;
 
-  
+    // Provide type annotations for emissionFactors object
+    const emissionFactors: {
+      genderFactor: { [key: string]: number },
+      ageFactor: { [key: string]: number },
+      weightFactor: number,
+      professionFactor: { [key: string]: number },
+      ethnicityFactor: { [key: string]: number },
+      vehicleFactor: { [key: string]: number }
+    } = require("./emissionFactors.json");
+
     // Calculate emission factors based on provided parameters
     const genderFactor = emissionFactors.genderFactor[gender.toLowerCase()] || 1.0;
     const ageFactor = emissionFactors.ageFactor[age] || 1.0;
